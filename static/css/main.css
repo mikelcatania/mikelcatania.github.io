@@ -53,6 +53,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .header-name {
@@ -78,6 +79,10 @@ nav a {
 
 nav a:hover { color: var(--ink); }
 nav a.active { color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 2px; }
+
+/* Hamburger toggle — hidden on desktop */
+.nav-toggle { display: none; }
+.nav-toggle-label { display: none; }
 
 /* ═══════════════════ HERO ═══════════════════ */
 
@@ -538,5 +543,80 @@ nav a.active { color: var(--ink); border-bottom: 1.5px solid var(--ink); padding
 
 @media (max-width: 480px) {
   .hero-text h1 { font-size: 1.9rem; }
-  nav { display: none; }
+
+  /* Hamburger icon */
+  .nav-toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+    position: relative;
+  }
+
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--ink);
+    position: absolute;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .nav-toggle-label span::before {
+    content: '';
+    top: -6px;
+  }
+
+  .nav-toggle-label span::after {
+    content: '';
+    top: 6px;
+  }
+
+  /* Hamburger → X animation */
+  .nav-toggle:checked ~ .nav-toggle-label span {
+    background: transparent;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label span::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label span::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* Mobile nav dropdown */
+  nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    gap: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 1.5rem;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+
+  .nav-toggle:checked ~ nav {
+    max-height: 300px;
+    opacity: 1;
+    padding: 1rem 1.5rem;
+  }
+
+  nav a {
+    margin-left: 0;
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+  }
 }
