@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+<article>
+  <div class="article-header">
+    <a href="{{ "/" | relURL }}#{{ .Section }}" class="back-link">← Back to home</a>
+    {{ with .Params.series }}
+    <div class="series-label">{{ . }}</div>
+    {{ end }}
+    <h1>{{ .Title }}</h1>
+    <div class="article-meta">
+      {{ with .Params.tags }}{{ delimit . " · " }}{{ end }}
+      {{ if .Params.date }} · {{ .Date.Format "January 2006" }}{{ end }}
+    </div>
+  </div>
+
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+
+  <!-- Series navigation -->
+  <nav class="article-nav">
+    {{ with .PrevInSection }}
+      <a href="{{ .RelPermalink }}">← {{ .Title }}</a>
+    {{ else }}
+      <span></span>
+    {{ end }}
+    {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}">{{ .Title }} →</a>
+    {{ else }}
+      <span></span>
+    {{ end }}
+  </nav>
+</article>
+
+{{ end }}

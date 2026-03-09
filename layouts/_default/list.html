@@ -1,0 +1,22 @@
+{{ define "main" }}
+
+<div class="list-header">
+  <h1>{{ .Title }}</h1>
+</div>
+
+<div class="list-body">
+  <div class="post-list">
+    {{ range .Pages.ByDate }}
+    <a class="post-item" href="{{ .RelPermalink }}">
+      {{ with .Params.number }}<div class="post-number">{{ printf "%02d" . }}</div>{{ end }}
+      <div class="post-content">
+        <h3>{{ .Title }}</h3>
+        {{ with .Params.excerpt }}<p class="post-excerpt">{{ . }}</p>{{ end }}
+        {{ with .Params.tags }}<div class="post-meta">{{ delimit . " · " }}</div>{{ end }}
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</div>
+
+{{ end }}

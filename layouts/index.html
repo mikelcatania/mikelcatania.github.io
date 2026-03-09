@@ -1,0 +1,114 @@
+{{ define "main" }}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1 class="fade-in">Aerospace engineer,<br><em>flying wing</em> designer.</h1>
+    <p class="subtitle fade-in">Flight dynamics engineer at ESA/EUMETSAT. Exploring the design space of unconventional GA aircraft configurations.</p>
+  </div>
+  <div class="hero-aside fade-in">
+    <div class="hero-meta">
+      <span><strong>Based in</strong> {{ .Site.Params.location }}</span>
+      <span><strong>Current role</strong> Flight Dynamics, CLC Space</span>
+      <span><strong>Background</strong> MSc Aerospace, UPM Madrid</span>
+      <span><strong>Also</strong> PPL(A) pilot</span>
+    </div>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+
+<!-- ABOUT (short) -->
+<div class="section-divider"><div class="line"></div></div>
+<section class="home-section reveal" id="about">
+  <div class="section-label">About</div>
+  <div class="section-content">
+    <p>I'm an aerospace engineer with over 13 years of experience in spacecraft flight dynamics at ESA/ESOC. My day-to-day work involves orbit determination, manoeuvre planning, and operations for Earth observation missions — Sentinel-3, Sentinel-6, and the EPS constellation.</p>
+    <p>In 2025, I took a break to pursue an independent project: the conceptual design of a four-seater general aviation flying wing. That project combined classical aircraft design methods, panel-method aerodynamics, stability analysis, and a custom Python toolchain — and taught me more about honest engineering than any single job has.</p>
+    <div class="skill-tags">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">OpenVSP / VSPAERO</span>
+      <span class="skill-tag">Flight Dynamics</span>
+      <span class="skill-tag">Orbital Mechanics</span>
+      <span class="skill-tag">Aircraft Design</span>
+      <span class="skill-tag">NumPy / SciPy</span>
+      <span class="skill-tag">Docker / AWS</span>
+      <span class="skill-tag">Git</span>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN SERIES -->
+<div class="section-divider"><div class="line"></div></div>
+<section class="home-section reveal" id="design-series">
+  <div class="section-label">Design Series</div>
+  <div class="section-content">
+    <div class="series-header">
+      <h2>Flying Wing Conceptual Design</h2>
+      <p>A seven-part technical series documenting the conceptual design of a four-seater general aviation flying wing aircraft.</p>
+    </div>
+    <div class="post-list">
+      {{ range (where .Site.RegularPages "Section" "design-series").ByDate }}
+      <a class="post-item" href="{{ .RelPermalink }}">
+        {{ with .Params.number }}<div class="post-number">{{ printf "%02d" . }}</div>{{ end }}
+        <div class="post-content">
+          <h3>{{ .Title }}</h3>
+          {{ with .Params.excerpt }}<p class="post-excerpt">{{ . }}</p>{{ end }}
+          {{ with .Params.tags }}<div class="post-meta">{{ delimit . " · " }}</div>{{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<div class="section-divider"><div class="line"></div></div>
+<section class="home-section reveal" id="blog">
+  <div class="section-label">Blog</div>
+  <div class="section-content">
+    {{ $blogPages := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+    {{ if $blogPages }}
+    <div class="post-list">
+      {{ range $blogPages }}
+      <a class="post-item blog-item" href="{{ .RelPermalink }}">
+        <div class="post-content">
+          <h3>{{ .Title }}</h3>
+          {{ with .Params.excerpt }}<p class="post-excerpt">{{ . }}</p>{{ end }}
+          <div class="post-meta">
+            {{ .Date.Format "January 2006" }}{{ with .Params.tags }} · {{ delimit . " · " }}{{ end }}
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ else }}
+    <p class="empty-state">No posts yet. Check back soon.</p>
+    {{ end }}
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="section-divider"><div class="line"></div></div>
+<section class="home-section reveal" id="contact">
+  <div class="section-label">Contact</div>
+  <div class="section-content">
+    <div class="contact-content">
+      <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+      <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      <p class="contact-note">Based in Darmstadt, Germany. Open to conversations about flight dynamics, aircraft design, and interesting engineering problems.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// Reveal on scroll
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+
+{{ end }}

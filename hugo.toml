@@ -1,0 +1,55 @@
+baseURL = "https://mikelcatania.github.io/"
+languageCode = "en"
+title = "Mikel Catania"
+
+[params]
+  description = "Aerospace Engineer — Flight Dynamics & Aircraft Design"
+  author = "Mikel Catania"
+  location = "Darmstadt, Germany"
+  email = "mikel.catania@gmail.com"
+  linkedin = "https://linkedin.com/in/mikelcatania"
+
+  # KaTeX math rendering
+  math = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Allow raw HTML in markdown if needed
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
+
+  [markup.highlight]
+    style = "github-dark"
+    lineNos = false
+    guessSyntax = true
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
+  [[menu.main]]
+    name = "Design Series"
+    url = "/design-series/"
+    weight = 2
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 3
+  [[menu.main]]
+    name = "Contact"
+    url = "/#contact"
+    weight = 4
+
+[outputs]
+  home = ["HTML"]
+  page = ["HTML"]
+  section = ["HTML"]
+
+[pagination]
+  pagerSize = 20
