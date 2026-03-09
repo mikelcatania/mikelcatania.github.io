@@ -7,7 +7,7 @@
 <div class="list-body">
   <div class="post-list">
     {{ range .Pages.ByDate }}
-    <a class="post-item" href="{{ .RelPermalink }}">
+    <a class="post-item{{ if not .Params.number }} blog-item{{ end }}" href="{{ .RelPermalink }}">
       {{ with .Params.number }}<div class="post-number">{{ printf "%02d" . }}</div>{{ end }}
       <div class="post-content">
         <h3>{{ .Title }}</h3>
