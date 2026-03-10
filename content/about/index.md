@@ -38,6 +38,6 @@ Speciality in Aircraft Engineering. My thesis was the preliminary design of a su
 
 ## Publications
 
-- H. Krag et al., including M. Catania (2017). ["A 1 cm space debris impact onto the Sentinel-1A solar array."](https://www.sciencedirect.com/science/article/abs/pii/S0094576517304125) *Acta Astronautica*, Volume 137.
+- H. Krag et al., including M. Catania (2017). ["A 1 cm space debris impact onto the Sentinel-1A solar array."](https://doi.org/10.1016/j.actaastro.2017.05.010) *Acta Astronautica*, Volume 137.
 - M. Catania, C. Dietze, and J. Klein (2017). ["Sentinel-3A Flight Dynamics LEOP Operational Experience."](https://issfd.org/ISSFD_2017/paper/ISTS-2017-d-027__ISSFD-2017-027.pdf) 26th International Symposium on Space Flight Dynamics, Matsuyama, Japan.
 - M. Catania et al. (2024). ["Accuracy of Sentinel-3 operational orbit predictions with increased solar activity."](https://issfd.org/ISSFD_2024/ISSFD2024_7-2.pdf) 29th International Symposium on Space Flight Dynamics, Darmstadt, Germany.
